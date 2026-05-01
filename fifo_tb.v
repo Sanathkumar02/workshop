@@ -1,4 +1,4 @@
-```
+
 `include "fifo.v"
 module top;
     reg clk_i;
@@ -11,7 +11,7 @@ module top;
     wire empty_o;
     wire error_o;
 
-    // ✅ DUT instantiation
+    //  DUT instantiation
     fifo dut(
         .clk_i   (clk_i),
         .rst_i   (rst_i),
@@ -24,13 +24,13 @@ module top;
         .error_o (error_o)
     );
 
-    // ✅ Clock generation
+    //  Clock generation
     always begin
         clk_i = 0; #5;
         clk_i = 1; #5;
     end
 
-    // ✅ Reset + init
+    //  Reset + init
     initial begin
         rst_i   = 1;
         wdata_i = 0;
@@ -40,13 +40,13 @@ module top;
         rst_i = 0;
     end
 
-    // ✅ Finish
+    //  Finish
     initial begin
         #1000;
         $finish();
     end
 
-    // ✅ Main test - runs all tests automatically
+    //  Main test - runs all tests automatically
     initial begin
         @(negedge rst_i);  // Wait for reset release
         #2;                // Small delay for safety
@@ -71,7 +71,7 @@ module top;
         $finish();
     end
 
-    // ✅ Write task
+    //  Write task
     task write_fifo(integer num_writes);
         integer j;
         begin
@@ -86,7 +86,7 @@ module top;
         end
     endtask
 
-    // ✅ Read task
+    //  Read task
     task read_fifo(integer num_reads);
         integer k;
         begin
@@ -100,4 +100,5 @@ module top;
     endtask
 
 endmodule
-```
+
+
